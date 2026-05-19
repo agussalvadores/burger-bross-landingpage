@@ -14,14 +14,38 @@ const bebasNeue = Bebas_Neue({
   variable: '--font-display'
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
+
+const logoImage = {
+  url: '/logo-bros.jpg',
+  width: 1024,
+  height: 1024,
+  alt: 'Burger Bros',
+}
+
 export const metadata: Metadata = {
-  title: 'BROS - Hamburguesería Premium | La Plata, Quilmes, Bernal, City Bell',
+  metadataBase: new URL(siteUrl),
+  title: 'Burger Bros',
   description: 'Bienvenido a la Burgerhood. Las mejores hamburguesas artesanales de Buenos Aires. 4 sucursales: La Plata, Quilmes, Bernal y City Bell. Abierto de Lunes a Domingo 12 a 00hs.',
   keywords: ['hamburguesas', 'burger bros', 'bros', 'la plata', 'quilmes', 'bernal', 'city bell', 'hamburgueseria', 'argentina'],
+  icons: {
+    icon: '/logo-bros.jpg',
+    apple: '/logo-bros.jpg',
+  },
   openGraph: {
-    title: 'BROS - Hamburguesería Premium',
+    title: 'Burger Bros',
     description: 'Bienvenido a la Burgerhood. Las mejores hamburguesas artesanales.',
     type: 'website',
+    siteName: 'Burger Bros',
+    images: [logoImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Burger Bros',
+    description: 'Bienvenido a la Burgerhood. Las mejores hamburguesas artesanales.',
+    images: [logoImage.url],
   },
 }
 
