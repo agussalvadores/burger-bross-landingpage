@@ -71,27 +71,36 @@ export function BrosLogo({ size = "md", showStatus = false }: BrosLogoProps) {
     return () => clearInterval(interval)
   }, [])
 
-  const sizeClasses = {
-    sm: "w-10 h-10",
-    md: "w-14 h-14 md:w-16 md:h-16",
-    lg: "w-20 h-20",
+  const badgeSizes = {
+    sm: {
+      box: "h-7 min-w-[2.75rem] px-2 border-2",
+      text: "text-[0.65rem]",
+    },
+    md: {
+      box: "h-10 min-w-[4.25rem] px-3 border-[3px]",
+      text: "text-xl md:text-2xl",
+    },
+    lg: {
+      box: "h-14 min-w-[5.75rem] px-4 border-[3px]",
+      text: "text-3xl md:text-4xl",
+    },
   }
 
-  const textSizeClasses = {
-    sm: "text-sm",
-    md: "text-base md:text-lg",
-    lg: "text-xl",
-  }
-
+  const badge = badgeSizes[size]
   const statusConfig = statusConfigs[status]
 
   return (
     <div className="flex items-center gap-3">
-      {/* Logo Circle */}
-      <div className={`${sizeClasses[size]} rounded-full bg-primary flex items-center justify-center`}>
-        <span className={`text-secondary font-[var(--font-display)] ${textSizeClasses[size]} font-bold tracking-tight italic text-center`}>
-          BROS
-        </span>
+      <div className="-rotate-[12deg] py-1">
+        <div
+          className={`${badge.box} bg-primary border-secondary flex items-center justify-center box-border`}
+        >
+          <span
+            className={`${badge.text} text-secondary font-[var(--font-display)] font-bold leading-none tracking-[0.08em] translate-y-[0.04em] select-none`}
+          >
+            BROS
+          </span>
+        </div>
       </div>
 
       {/* Status Badge */}
